@@ -6,10 +6,8 @@ document.getElementById('submitOrder').addEventListener('click', async () => {
 
     const orderData = { name, tel, email, order: "Liquid Soap", quantity };
 
-    console.log(orderData);
-
     try {
-        const response = await fetch('https://wilfrid245.github.io/order/', {
+        const response = await fetch('http://your-nodejs-server-url/send-email', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -20,7 +18,6 @@ document.getElementById('submitOrder').addEventListener('click', async () => {
         if (response.ok) {
             const result = await response.json();
             alert(result.message || 'Order submitted successfully!');
-            console.log(result);
         } else {
             const error = await response.json();
             alert(error.error || 'Failed to submit order. Please try again.');
@@ -30,4 +27,3 @@ document.getElementById('submitOrder').addEventListener('click', async () => {
         console.error('Detailed error:', error);
     }
 });
-
