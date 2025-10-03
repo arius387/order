@@ -1,256 +1,115 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Student Business Club — Order Soap</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <title>Order Form</title>
   <style>
-    html { scroll-behavior: smooth; }
-    section { min-height: 100vh; display: flex; align-items: center; }
+    /* Simple modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      width: 300px;
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+    .modal.success .modal-content { border: 2px solid green; }
+    .modal.error .modal-content { border: 2px solid red; }
+    .close-btn {
+      margin-top: 15px;
+      padding: 8px 16px;
+      border: none;
+      background: #1402d9;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800 leading-relaxed">
+<body>
 
-  <!-- NAV -->
-  <header class="bg-white shadow fixed top-0 w-full z-30">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <h1 class="text-xl font-semibold">Student Business Club</h1>
-      <nav class="space-x-6 text-sm font-medium">
-        <a href="#home" class="hover:text-sky-600">Home</a>
-        <a href="#about" class="hover:text-sky-600">About</a>
-        <a href="#order" class="hover:text-sky-600">Order</a>
-        <a href="#contact" class="hover:text-sky-600">Contact</a>
-      </nav>
-    </div>
-  </header>
+  <h2>Place Your Order</h2>
+  <form id="orderForm">
+    <input type="text" name="name" placeholder="Full Name" required><br><br>
+    <input type="email" name="email" placeholder="Email" required><br><br>
+    <input type="tel" name="tel" placeholder="Phone Number" required><br><br>
+    
+    <select name="product" required>
+      <option value="">Select product</option>
+      <option value="Liquid Soap">Liquid Soap</option>
+    </select><br><br>
+    
+    <select name="quantity" required>
+      <option value="">Select quantity</option>
+      <option value="3L">3L</option>
+      <option value="5L">5L</option>
+      <option value="10L">10L</option>
+      <option value="20L">20L</option>
+    </select><br><br>
+    
+    <button type="submit">Submit Order</button>
+  </form>
 
-  <!-- HOME -->
-  <section id="home" class="bg-gradient-to-r from-sky-600 to-indigo-600 text-white pt-24">
-    <div class="max-w-3xl mx-auto text-center px-6">
-      <h2 class="text-4xl font-bold mb-6">High-Quality Liquid Soap</h2>
-      <p class="text-lg opacity-90 mb-8">Locally made by students — affordable, sustainable, and trustworthy.</p>
-      <a href="#order" class="bg-white text-sky-700 px-8 py-4 rounded-xl font-semibold shadow hover:shadow-lg transition">Order Now</a>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about" class="bg-white pt-24">
-    <div class="max-w-4xl mx-auto text-center px-6">
-      <h3 class="text-3xl font-bold mb-6">About Our Project</h3>
-      <p class="text-lg mb-6">The Student Business Club empowers student entrepreneurs by producing liquid soap in small batches. Every order supports learning and campus initiatives.</p>
-      <ul class="text-slate-700 text-left list-disc max-w-md mx-auto space-y-2">
-        <li>Student-run, supporting campus growth</li>
-        <li>Available: 3L, 5L, 10L, 20L</li>
-        <li>Payment & delivery arranged after confirmation</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ORDER -->
-  <section id="order" class="bg-slate-100 pt-24">
-    <div class="max-w-xl mx-auto px-6">
-      <h3 class="text-3xl font-bold text-center mb-8">Place an Order</h3>
-      <form id="orderForm" class="bg-white p-8 rounded-xl shadow-md space-y-5" autocomplete="on">
-        <div>
-          <label class="block text-sm font-medium mb-1">Full Name</label>
-          <input id="name" name="name" required class="w-full border rounded px-3 py-2 focus:ring-2 focus:ring-sky-400" placeholder="Jane Doe">
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-sm font-medium mb-1">Email</label>
-            <input id="email" name="email" type="email" required class="w-full border rounded px-3 py-2 focus:ring-2 focus:ring-sky-400" placeholder="you@example.com">
-          </div>
-          <div>
-            <label class="block text-sm font-medium mb-1">Telephone</label>
-            <input id="tel" name="tel" type="tel" required class="w-full border rounded px-3 py-2 focus:ring-2 focus:ring-sky-400" placeholder="+250 7xx xxx xxx">
-          </div>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-sm font-medium mb-1">Product</label>
-            <select id="product" name="product" class="w-full border rounded px-3 py-2">
-              <option value="Liquid Soap">Liquid Soap</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-sm font-medium mb-1">Quantity</label>
-            <select id="quantity" name="quantity" required class="w-full border rounded px-3 py-2">
-              <option value="3L">3 L</option>
-              <option value="5L">5 L</option>
-              <option value="10L">10 L</option>
-              <option value="20L">20 L</option>
-            </select>
-          </div>
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium mb-1">Notes (optional)</label>
-          <textarea id="notes" name="notes" rows="3" class="w-full border rounded px-3 py-2" placeholder="Delivery time, campus building..."></textarea>
-        </div>
-
-        <button id="submitBtn" type="submit" class="w-full bg-sky-600 text-white py-3 rounded-lg font-semibold hover:bg-sky-700 transition">
-          Send Order
-        </button>
-
-        <div id="status" class="text-sm text-center mt-2 text-slate-600" aria-live="polite"></div>
-      </form>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="bg-white pt-24 pb-12">
-    <div class="max-w-3xl mx-auto text-center px-6">
-      <h3 class="text-3xl font-bold mb-6">Contact Us</h3>
-      <p class="mb-4 text-lg">Reach the Student Business Club:</p>
-      <p>Email: <a href="mailto:club@example.com" class="text-sky-600 hover:underline">club@example.com</a></p>
-      <p>Phone: +250 7xx xxx xxx</p>
-    </div>
-  </section>
-
-  <footer class="bg-slate-50 border-t py-6 text-center text-sm text-slate-500">
-    © Student Business Club — All rights reserved
-  </footer>
-
-  <!-- RESPONSE MODAL -->
-  <div id="responseModal" class="fixed inset-0 hidden z-50">
-    <div id="modalOverlay" class="absolute inset-0 bg-black/40"></div>
-    <div class="relative max-w-lg mx-auto mt-24 bg-white rounded-xl shadow-lg p-6 m-4">
-      <header class="flex items-start justify-between">
-        <h4 id="modalTitle" class="text-lg font-semibold">Status</h4>
-        <button id="closeModal" aria-label="Close" class="text-slate-500 hover:text-slate-800 text-xl leading-none">×</button>
-      </header>
-      <p id="modalMessage" class="mt-4 text-slate-700"></p>
-      <div class="mt-6 text-right">
-        <button id="modalOk" class="px-4 py-2 rounded bg-sky-600 text-white font-medium">OK</button>
-      </div>
+  <!-- Modal -->
+  <div id="responseModal" class="modal">
+    <div class="modal-content">
+      <p id="modalMessage"></p>
+      <button class="close-btn" onclick="closeModal()">OK</button>
     </div>
   </div>
 
-  <!-- SCRIPT -->
   <script>
-    (function(){
-      // === CONFIGURE THIS ===
-      // Replace with your Make.com incoming webhook URL
-      const WEBHOOK_URL = 'https://hook.us2.make.com/ygz8rqdikqtsgsrpe43pqy5249vnvnyj';
-      // ======================
+    const orderForm = document.getElementById("orderForm");
+    const modal = document.getElementById("responseModal");
+    const modalMessage = document.getElementById("modalMessage");
 
-      // Elements
-      const form = document.getElementById('orderForm');
-      const submitBtn = document.getElementById('submitBtn');
-      const statusEl = document.getElementById('status');
+    // open modal with message
+    function showModal(message, type) {
+      modalMessage.textContent = message;
+      modal.className = "modal " + type; // add success or error class
+      modal.style.display = "flex";
+    }
 
-      // Modal elements
-      const modal = document.getElementById('responseModal');
-      const modalOverlay = document.getElementById('modalOverlay');
-      const modalTitle = document.getElementById('modalTitle');
-      const modalMessage = document.getElementById('modalMessage');
-      const closeModalBtn = document.getElementById('closeModal');
-      const modalOkBtn = document.getElementById('modalOk');
+    // close modal
+    function closeModal() {
+      modal.style.display = "none";
+    }
 
-      // track focus to restore
-      let lastFocusedEl = null;
+    orderForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-      function openModal(message, isSuccess = true) {
-        lastFocusedEl = document.activeElement;
-        modalTitle.textContent = isSuccess ? 'Order sent' : 'Error';
-        modalMessage.textContent = message;
-        // styling
-        modalTitle.classList.toggle('text-green-600', isSuccess);
-        modalTitle.classList.toggle('text-red-600', !isSuccess);
+      const formData = new FormData(orderForm);
+      const orderData = Object.fromEntries(formData.entries());
 
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-        document.body.style.overflow = 'hidden';
-        closeModalBtn.focus();
-      }
+      try {
+        const res = await fetch("https://hook.make.com/your-webhook-url", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(orderData)
+        });
 
-      function closeModal() {
-        modal.classList.remove('flex');
-        modal.classList.add('hidden');
-        document.body.style.overflow = '';
-        if (lastFocusedEl) lastFocusedEl.focus();
-      }
+        const data = await res.json();
 
-      // close events
-      closeModalBtn.addEventListener('click', closeModal);
-      modalOkBtn.addEventListener('click', closeModal);
-      modalOverlay.addEventListener('click', closeModal);
-      window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
-      });
-
-      function setStatus(text, isError){
-        statusEl.textContent = text;
-        statusEl.classList.toggle('text-red-600', !!isError);
-      }
-
-      // autofill telephone prefix example
-      (function prefillTel(){
-        const tel = document.getElementById('tel');
-        if(tel && !tel.value) tel.value = '+250 ';
-      })();
-
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        // client validation
-        const name = form.name.value.trim();
-        const email = form.email.value.trim();
-        const tel = form.tel.value.trim();
-        const product = form.product.value;
-        const quantity = form.quantity.value;
-        const notes = form.notes.value.trim();
-
-        if(!name || !email || !tel){
-          openModal('Please complete name, email and telephone fields.', false);
-          return;
+        if (data.status === "success") {
+          showModal(data.message || "Order placed successfully!", "success");
+          orderForm.reset();
+        } else {
+          showModal(data.message || "Order failed. Try again.", "error");
         }
-
-        const payload = { name, email, tel, product, quantity, notes, submitted_at: new Date().toISOString() };
-
-        try {
-          submitBtn.disabled = true;
-          submitBtn.textContent = 'Sending...';
-          setStatus('Sending order...');
-
-          const res = await fetch(WEBHOOK_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-          });
-
-          // Try to parse a JSON response with { message: "..."}.
-          // If CORS blocks reading response the fetch will throw and we'll go to catch.
-          let resMessage = null;
-          try {
-            const json = await res.json().catch(()=>null);
-            if (json && json.message) resMessage = json.message;
-            else if (json && json.status && json.message) resMessage = json.message;
-          } catch (parseErr) {
-            // fallback
-            try { resMessage = await res.text(); } catch(_) { resMessage = null; }
-          }
-
-          if (res.ok) {
-            openModal(resMessage || 'Order sent — we will contact you shortly.', true);
-            form.reset();
-          } else {
-            // not ok, surface message if present
-            openModal(resMessage || 'Failed to send order. Please try again or contact us.', false);
-          }
-        } catch (err) {
-          // network/CORS or other issue
-          console.error(err);
-          openModal('Network or CORS error. Check console and Make.com scenario logs. If you see CORS errors, ensure the Make.com "Respond to webhook" includes CORS headers (Access-Control-Allow-Origin).', false);
-        } finally {
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Send Order';
-          setStatus('');
-        }
-      });
-    })();
+      } catch (err) {
+        showModal("Network error. Please try again later.", "error");
+      }
+    });
   </script>
+
 </body>
 </html>
